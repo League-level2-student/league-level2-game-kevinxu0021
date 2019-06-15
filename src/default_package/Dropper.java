@@ -21,13 +21,14 @@ public class Dropper {
 	}
 
 	void setup() {
-		frame.add(panel);
 		frame.addKeyListener(panel);
+		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.getContentPane().setPreferredSize(new Dimension(width, height));
 		frame.setVisible(true);
 		frame.pack();
+		panel.startGame();
 
 	}
 }
