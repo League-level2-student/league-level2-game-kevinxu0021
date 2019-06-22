@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -17,10 +18,14 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 	int currentState = MENU_STATE;
 	Timer timer;
 	Font font;
+	
 
 	Panel() {
 		timer = new Timer(1000 / 60, this);
 		font = new Font("Arial", Font.BOLD, 36);
+		Button button = new Button();
+
+
 	}
 
 	void startGame() {
@@ -30,16 +35,18 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 	void drawPauseScreen(Graphics g) {
 
 		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, Dropper.width, Dropper.height);
+		//g.fillRect(0, 0, Dropper.width, Dropper.height);
 		g.setColor(Color.WHITE);
 		g.setFont(font);
 		g.drawString("Paused", 175, 350);
 	}
 
-	@Override
+	
 	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		if (currentState == PAUSE_STATE) {
 			drawPauseScreen(g);
+			
 		}
 	}
 
@@ -54,6 +61,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			currentState = PAUSE_STATE;
+			
 		}
 	}
 
