@@ -1,5 +1,6 @@
 package default_package;
 
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -8,21 +9,24 @@ import javax.swing.JPanel;
 
 public class Keybind implements KeyListener {
 	JFrame frame;
-	JPanel panel;
+	final static int width = 500;
+	final static int height = 900;
+
+	KeybindPanel keybindPanel;
 
 	Keybind() {
 		frame = new JFrame();
-		panel = new JPanel();
 	}
 
-	public static void main(String[] args) {
-		Keybind keybind = new Keybind();
-
-	}
-
-	void setup() {
-		frame.setSize(500, 900);
-		frame.add(panel);
+	public void setup() {
+		frame.addKeyListener(keybindPanel);
+		frame.add(keybindPanel);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setPreferredSize(new Dimension(width, height));
+		frame.setResizable(false);
+		frame.setVisible(true);
+		frame.pack();
+		keybindPanel.start();
 	}
 
 	@Override
