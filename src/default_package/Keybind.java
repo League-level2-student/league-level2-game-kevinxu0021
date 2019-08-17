@@ -1,6 +1,7 @@
 package default_package;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -16,6 +17,7 @@ public class Keybind implements KeyListener {
 
 	Keybind() {
 		frame = new JFrame();
+		keybindPanel = new KeybindPanel();
 	}
 
 	public void setup() {
@@ -27,6 +29,7 @@ public class Keybind implements KeyListener {
 		frame.setVisible(true);
 		frame.pack();
 		keybindPanel.start();
+		keybindPanel.draw();
 	}
 
 	@Override

@@ -23,6 +23,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	Font font;
 	Font font2;
 	Keybind keybind = new Keybind();
+	KeybindPanel keybindPanel = new KeybindPanel();
 
 	Panel() {
 		timer = new Timer(1000 / 60, this);
@@ -100,7 +101,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 
 		if (e.getButton() == MouseEvent.BUTTON1 && currentState == PAUSE_STATE) {
 			if (e.getPoint().x < 100 && e.getPoint().y < 50) {
-				currentState = KEYBIND;
+				// currentState = KEYBIND;
 				keybind.setup();
 			}
 		}
