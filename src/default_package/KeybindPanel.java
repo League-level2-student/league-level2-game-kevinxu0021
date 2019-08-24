@@ -15,12 +15,12 @@ public class KeybindPanel extends JPanel implements ActionListener, KeyListener 
 	String Left = "A";
 	String Right = "D";
 
-	int x = 100;
+	int x = 300;
 	int y = 100;
 	int width = 75;
 	int height = 25;
 
-	int x2 = 100;
+	int x2 = 300;
 	int y2 = 200;
 	int width2 = 75;
 	int height2 = 25;
@@ -50,7 +50,10 @@ public class KeybindPanel extends JPanel implements ActionListener, KeyListener 
 		button.rectangles(g);
 		button2.rectangles(g);
 		g.setFont(font);
-		g.drawString(Left, x, y);
+		g.drawString(Left, 333, 118);
+		g.drawString(Right, 333, 218);
+		g.drawString("Move Left", 100, 118);
+		g.drawString("Move Right", 100, 218);
 	}
 
 	@Override

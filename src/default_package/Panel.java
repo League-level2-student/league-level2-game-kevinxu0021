@@ -16,18 +16,20 @@ import javax.swing.Timer;
 
 public class Panel extends JPanel implements KeyListener, ActionListener, MouseListener {
 	final int MENU_STATE = 0;
+	final int GAME_STATE = 1;
 	final int PAUSE_STATE = 3;
-	final int KEYBIND = 4;
 	int currentState = MENU_STATE;
 	Timer timer;
 	Font font;
 	Font font2;
 	Keybind keybind = new Keybind();
 	KeybindPanel keybindPanel = new KeybindPanel();
+	GamePanel gamePanel;
 
 	Panel() {
 		timer = new Timer(1000 / 60, this);
 		font = new Font("Arial", Font.BOLD, 36);
+		gamePanel = new GamePanel();
 	}
 
 	void startGame() {
@@ -43,12 +45,25 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 
 	}
 
+	void drawMenuScreen(Graphics g) {
+		g.setColor(Color.YELLOW);
+		g.fillRect(0, 0, 500, 900);
+		g.setColor(Color.BLACK);
+
+	}
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if (currentState == PAUSE_STATE) {
 			drawPauseScreen(g);
 			rectangles(g);
 
+		}
+		if (currentState == MENU_STATE) {
+			drawMenuScreen(g);
+		}
+		if (currentState == GAME_STATE) {
+			gamePanel.drawGameScreen(g);
 		}
 	}
 
@@ -62,8 +77,17 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			currentState = PAUSE_STATE;
+			if (currentState == GAME_STATE) {
+				currentState = PAUSE_STATE;
+			} else if (currentState == PAUSE_STATE) {
+				currentState = GAME_STATE;
+			}
 
+		}
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (currentState == MENU_STATE) {
+				currentState = GAME_STATE;
+			}
 		}
 	}
 
@@ -101,7 +125,6 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 
 		if (e.getButton() == MouseEvent.BUTTON1 && currentState == PAUSE_STATE) {
 			if (e.getPoint().x < 100 && e.getPoint().y < 50) {
-				// currentState = KEYBIND;
 				keybind.setup();
 			}
 		}
