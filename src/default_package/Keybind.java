@@ -8,7 +8,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Keybind implements KeyListener {
+public class Keybind implements KeyListener{
 	JFrame frame;
 	final static int width = 500;
 	final static int height = 900;
@@ -28,6 +28,7 @@ public class Keybind implements KeyListener {
 		frame.setResizable(false);
 		frame.setVisible(true);
 		frame.pack();
+		frame.addMouseListener(keybindPanel);
 		keybindPanel.start();
 		keybindPanel.draw();
 	}

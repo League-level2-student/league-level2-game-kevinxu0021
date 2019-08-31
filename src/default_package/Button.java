@@ -3,6 +3,8 @@ package default_package;
 import java.awt.Color;
 
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class Button {
 
@@ -24,6 +26,15 @@ public class Button {
 		g.fillRect(x, y, width, height);
 		g.setColor(Color.BLACK);
 		g.drawRect(x, y, width, height);
+	}
+
+	public boolean checkPressed(int mouseX, int mouseY) {
+		if (mouseX < x + width && mouseX > x && mouseY < y + height + height && mouseY > y) {
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 
 }
