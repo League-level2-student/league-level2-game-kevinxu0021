@@ -29,7 +29,7 @@ public class Button {
 	}
 
 	public boolean checkPressed(int mouseX, int mouseY) {
-		if (mouseX < x + width && mouseX > x && mouseY < y + height + height && mouseY > y) {
+		if (mouseX < x + width && mouseX > x && mouseY < y + height + height && mouseY > y + height) {
 			return true;
 		} else {
 			return false;

@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -22,6 +23,8 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	Timer timer;
 	Font font;
 	Font font2;
+	Font Title;
+	Font Subtitle;
 	Keybind keybind = new Keybind();
 	KeybindPanel keybindPanel = new KeybindPanel();
 	GamePanel gamePanel;
@@ -29,6 +32,8 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	Panel() {
 		timer = new Timer(1000 / 60, this);
 		font = new Font("Arial", Font.BOLD, 36);
+		Title = new Font("Times New Roman", Font.BOLD, 65);
+		Subtitle = new Font("Times New Roman", Font.PLAIN, 24);
 		gamePanel = new GamePanel();
 	}
 
@@ -49,6 +54,11 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 		g.setColor(Color.YELLOW);
 		g.fillRect(0, 0, 500, 900);
 		g.setColor(Color.BLACK);
+		g.setFont(Title);
+		g.drawString("Welcome", 110, 200);
+		g.setFont(Subtitle);
+		g.drawString("Press ENTER To Start", 135, 425);
+		g.drawString("Press SPACE For Instructions", 100, 650);
 
 	}
 
@@ -87,6 +97,13 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == MENU_STATE) {
 				currentState = GAME_STATE;
+			}
+		}
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			if (currentState == MENU_STATE) {
+				JOptionPane.showMessageDialog(null,
+						"Use whatever key you programmed to move left and right, and avoid the blockings. ",
+						"Instructions", 0, null);
 			}
 		}
 	}

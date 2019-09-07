@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -93,7 +94,12 @@ public class KeybindPanel extends JPanel implements ActionListener, KeyListener,
 		// TODO Auto-generated method stub
 		System.out.println(e.getPoint().x + ", " + e.getPoint().y);
 		if (button.checkPressed(e.getPoint().x, e.getPoint().y) == true) {
-			System.out.println("a");
+			Left = JOptionPane.showInputDialog(null, "Type the key you want to move left.");
+			Left = Left.substring(0, 1).toUpperCase();
+		}
+		if (button2.checkPressed(e.getPoint().x, e.getPoint().y) == true) {
+			Right = JOptionPane.showInputDialog(null, "Type the key you want to move right.");
+			Right = Right.substring(0, 1).toUpperCase();
 		}
 	}
 
