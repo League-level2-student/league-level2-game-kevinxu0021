@@ -45,10 +45,6 @@ public class KeybindPanel extends JPanel implements ActionListener, KeyListener,
 		timer.start();
 	}
 
-	void draw() {
-
-	}
-
 	public void paintComponent(Graphics g) {
 		button.rectangles(g);
 		button2.rectangles(g);
@@ -117,6 +113,11 @@ public class KeybindPanel extends JPanel implements ActionListener, KeyListener,
 
 	@Override
 	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void draw() {
 		// TODO Auto-generated method stub
 
 	}

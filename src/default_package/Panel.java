@@ -73,7 +73,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 			drawMenuScreen(g);
 		}
 		if (currentState == GAME_STATE) {
-			gamePanel.drawGameScreen(g);
+			gamePanel.paintComponemt(g);
 		}
 	}
 
