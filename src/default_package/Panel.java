@@ -15,6 +15,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import keybinds.Keybind;
+import keybinds.KeybindPanel;
+
 public class Panel extends JPanel implements KeyListener, ActionListener, MouseListener {
 	final int MENU_STATE = 0;
 	final int GAME_STATE = 1;

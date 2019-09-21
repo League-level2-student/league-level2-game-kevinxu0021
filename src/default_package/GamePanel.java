@@ -9,6 +9,8 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
+import keybinds.KeybindPanel;
+
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	Character character;
 	KeybindPanel keybindPanel;
@@ -20,12 +22,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	GamePanel() {
 		keybindPanel = new KeybindPanel();
 
-		if (left == true) {
-			x--;
-		}
-		if (right == true) {
-			x++;
-		}
 	}
 
 	public void paintComponemt(Graphics g) {
@@ -33,6 +29,16 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		g.fillRect(0, 0, 500, 900);
 		g.setColor(Color.GREEN);
 		g.fillRect(x, 300, 50, 50);
+
+	}
+
+	public void update() {
+		if (left == true) {
+			x--;
+		}
+		if (right == true) {
+			x++;
+		}
 	}
 
 	@Override
@@ -44,11 +50,12 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+		if (e.getKeyCode() == KeybindPanel.left) {
 			System.out.println("Left Pressed");
-			left = true;
+			x--;
+			System.out.println(x);
 		}
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		if (e.getKeyCode() == KeybindPanel.right) {
 			System.out.println("Right Pressed");
 			right = true;
 		}
@@ -57,11 +64,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+		if (e.getKeyCode() == KeybindPanel.left) {
 			System.out.println("Left Pressed");
 			left = false;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		if (e.getKeyCode() == KeybindPanel.right) {
 			System.out.println("Right Pressed");
 			right = false;
 		}

@@ -1,4 +1,4 @@
-package default_package;
+package keybinds;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -15,7 +15,7 @@ public class Keybind implements KeyListener {
 
 	KeybindPanel keybindPanel;
 
-	Keybind() {
+	public Keybind() {
 		frame = new JFrame();
 		keybindPanel = new KeybindPanel();
 	}
@@ -23,7 +23,7 @@ public class Keybind implements KeyListener {
 	public void setup() {
 		frame.addKeyListener(keybindPanel);
 		frame.add(keybindPanel);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setPreferredSize(new Dimension(width, height));
 		frame.setResizable(false);
 		frame.setVisible(true);

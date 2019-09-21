@@ -1,4 +1,4 @@
-package default_package;
+package keybinds;
 
 import java.awt.Font;
 import java.awt.Graphics;
@@ -13,10 +13,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import default_package.Button;
+
 public class KeybindPanel extends JPanel implements ActionListener, KeyListener, MouseListener {
 
-	String Left = "A";
-	String Right = "D";
+	static String Left = "A";
+	static String Right = "D";
+
+	public static int left = java.awt.event.KeyEvent.getExtendedKeyCodeForChar(Left.charAt(0));
+	public static int right = java.awt.event.KeyEvent.getExtendedKeyCodeForChar(Right.charAt(0));
 
 	int x = 300;
 	int y = 100;
@@ -35,7 +40,7 @@ public class KeybindPanel extends JPanel implements ActionListener, KeyListener,
 	Button button = new Button(x, y, width, height);
 	Button button2 = new Button(x2, y2, width2, height2);
 
-	KeybindPanel() {
+	public KeybindPanel() {
 		timer = new Timer(1000 / 60, this);
 
 		font = new Font("Arial", Font.PLAIN, 14);
@@ -92,10 +97,12 @@ public class KeybindPanel extends JPanel implements ActionListener, KeyListener,
 		if (button.checkPressed(e.getPoint().x, e.getPoint().y) == true) {
 			Left = JOptionPane.showInputDialog(null, "Type the key you want to move left.");
 			Left = Left.substring(0, 1).toUpperCase();
+			left = java.awt.event.KeyEvent.getExtendedKeyCodeForChar(Left.charAt(0));
 		}
 		if (button2.checkPressed(e.getPoint().x, e.getPoint().y) == true) {
 			Right = JOptionPane.showInputDialog(null, "Type the key you want to move right.");
 			Right = Right.substring(0, 1).toUpperCase();
+			right = java.awt.event.KeyEvent.getExtendedKeyCodeForChar(Right.charAt(0));
 		}
 	}
 
