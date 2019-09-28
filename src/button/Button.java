@@ -1,5 +1,5 @@
 
-package default_package;
+package button;
 
 import java.awt.Color;
 

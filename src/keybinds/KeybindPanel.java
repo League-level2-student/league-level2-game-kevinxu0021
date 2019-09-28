@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import default_package.Button;
+import button.Button;
 
 public class KeybindPanel extends JPanel implements ActionListener, KeyListener, MouseListener {
 

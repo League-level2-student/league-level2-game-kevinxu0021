@@ -30,6 +30,8 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	Font Subtitle;
 	Keybind keybind = new Keybind();
 	KeybindPanel keybindPanel = new KeybindPanel();
+	//Character character  = new Character(100, 100, 100, 100);
+	//ObjectManager objectManager = new ObjectManager(character);
 	GamePanel gamePanel;
 
 	Panel() {
@@ -43,6 +45,10 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	void startGame() {
 		timer.start();
 	}
+	
+	//void updateGameState() {
+		//objectManager.update();
+	//}
 
 	void drawPauseScreen(Graphics g) {
 
@@ -121,6 +127,9 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		repaint();
+		//if(currentState == GAME_STATE) {
+		//	updateGameState();
+		//}
 	}
 
 	void rectangles(Graphics g) {
