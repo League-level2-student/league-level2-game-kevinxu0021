@@ -19,36 +19,41 @@ import keybinds.Keybind;
 import keybinds.KeybindPanel;
 
 public class Panel extends JPanel implements KeyListener, ActionListener, MouseListener {
+
 	final int MENU_STATE = 0;
 	final int GAME_STATE = 1;
 	final int PAUSE_STATE = 3;
 	int currentState = MENU_STATE;
+
 	Timer timer;
+
 	Font font;
 	Font font2;
 	Font Title;
 	Font Subtitle;
+
 	Keybind keybind = new Keybind();
 	KeybindPanel keybindPanel = new KeybindPanel();
-	//Character character  = new Character(100, 100, 100, 100);
-	//ObjectManager objectManager = new ObjectManager(character);
-	GamePanel gamePanel;
+
+	Character character = new Character(100, 100, 100, 100);
+	ObjectManager objectManager = new ObjectManager(character);
 
 	Panel() {
 		timer = new Timer(1000 / 60, this);
+
 		font = new Font("Arial", Font.BOLD, 36);
 		Title = new Font("Times New Roman", Font.BOLD, 65);
 		Subtitle = new Font("Times New Roman", Font.PLAIN, 24);
-		gamePanel = new GamePanel();
+
 	}
 
 	void startGame() {
 		timer.start();
 	}
-	
-	//void updateGameState() {
-		//objectManager.update();
-	//}
+
+	void updateGameState() {
+		objectManager.update();
+	}
 
 	void drawPauseScreen(Graphics g) {
 
@@ -71,6 +76,11 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 
 	}
 
+	
+	void drawGameScreen(Graphics g) {
+		objectManager.draw(g);
+	}
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if (currentState == PAUSE_STATE) {
@@ -82,7 +92,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 			drawMenuScreen(g);
 		}
 		if (currentState == GAME_STATE) {
-			gamePanel.paintComponemt(g);
+			drawGameScreen(g);
 		}
 	}
 
@@ -94,7 +104,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+		
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			if (currentState == GAME_STATE) {
 				currentState = PAUSE_STATE;
@@ -115,21 +125,51 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 						"Instructions", 0, null);
 			}
 		}
+
+		//character movement
+		if (currentState == GAME_STATE) {
+			if(e.getKeyCode() == KeyEvent.VK_W) {
+				character.up = true;
+			}
+			if(e.getKeyCode() == KeyEvent.VK_S) {
+				character.down = true;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_A) {
+				character.left = true;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_D) {
+				character.right = true;
+			}
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-
+		//character movement
+		if (currentState == GAME_STATE) {
+			if(e.getKeyCode() == KeyEvent.VK_W) {
+				character.up = false;
+			}
+			if(e.getKeyCode() == KeyEvent.VK_S) {
+				character.down = false;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_A) {
+				character.left = false;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_D) {
+				character.right = false;
+			}
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		repaint();
-		//if(currentState == GAME_STATE) {
-		//	updateGameState();
-		//}
+		if (currentState == GAME_STATE) {
+			updateGameState();
+			System.out.println("called");
+		}
 	}
 
 	void rectangles(Graphics g) {

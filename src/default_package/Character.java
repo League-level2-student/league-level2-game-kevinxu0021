@@ -4,6 +4,8 @@ import java.awt.Graphics;
 
 public class Character extends GameObject {
 	int speed;
+	boolean up = false;
+	boolean down = false;
 	boolean left = false;
 	boolean right = false;
 
@@ -14,11 +16,26 @@ public class Character extends GameObject {
 
 	void update() {
 		super.update();
+		
+		if (up == true) {
+			
+				y -= speed;
+			
+		}
+		if (down == true) {
+			
+				y += speed;
+			
+		}
 		if (left == true) {
-			y -= speed;
+			
+				x -= speed;
+			
 		}
 		if (right == true) {
-			y += speed;
+			
+				x += speed;
+			
 		}
 
 	}
