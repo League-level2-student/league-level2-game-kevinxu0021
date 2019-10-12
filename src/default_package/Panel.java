@@ -36,6 +36,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	KeybindPanel keybindPanel = new KeybindPanel();
 
 	Character character = new Character(100, 100, 100, 100);
+	// Obstacles Obstacle = new Obstacles(100, 100, 100, 100);
 	ObjectManager objectManager = new ObjectManager(character);
 
 	Panel() {
@@ -76,7 +77,6 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 
 	}
 
-	
 	void drawGameScreen(Graphics g) {
 		objectManager.draw(g);
 	}
@@ -104,7 +104,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
+		System.out.println("Press Detected");
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			if (currentState == GAME_STATE) {
 				currentState = PAUSE_STATE;
@@ -126,18 +126,22 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 			}
 		}
 
-		//character movement
+		// character movement
 		if (currentState == GAME_STATE) {
-			if(e.getKeyCode() == KeyEvent.VK_W) {
+			if (e.getKeyCode() == KeyEvent.VK_W) {
+				System.out.println("Pressed: W");
 				character.up = true;
 			}
-			if(e.getKeyCode() == KeyEvent.VK_S) {
+			if (e.getKeyCode() == KeyEvent.VK_S) {
+				System.out.println("Pressed: S");
 				character.down = true;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_A) {
+				System.out.println("Pressed: A");
 				character.left = true;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_D) {
+				System.out.println("Pressed: D");
 				character.right = true;
 			}
 		}
@@ -145,18 +149,22 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		//character movement
+		// character movement
 		if (currentState == GAME_STATE) {
-			if(e.getKeyCode() == KeyEvent.VK_W) {
+			if (e.getKeyCode() == KeyEvent.VK_W) {
+				System.out.println("realeased: W");
 				character.up = false;
 			}
-			if(e.getKeyCode() == KeyEvent.VK_S) {
+			if (e.getKeyCode() == KeyEvent.VK_S) {
+				System.out.println("realeased: S");
 				character.down = false;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_A) {
+				System.out.println("realeased: A");
 				character.left = false;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_D) {
+				System.out.println("realeased: D");
 				character.right = false;
 			}
 		}
@@ -168,7 +176,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 		repaint();
 		if (currentState == GAME_STATE) {
 			updateGameState();
-			System.out.println("called");
+			// System.out.println("called");
 		}
 	}
 

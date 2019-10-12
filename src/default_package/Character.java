@@ -16,26 +16,26 @@ public class Character extends GameObject {
 
 	void update() {
 		super.update();
-		
+
 		if (up == true) {
-			
-				y -= speed;
-			
+
+			y -= speed;
+
 		}
 		if (down == true) {
-			
-				y += speed;
-			
+
+			y += speed;
+
 		}
 		if (left == true) {
-			
-				x -= speed;
-			
+
+			x -= speed;
+
 		}
 		if (right == true) {
-			
-				x += speed;
-			
+
+			x += speed;
+
 		}
 
 	}
