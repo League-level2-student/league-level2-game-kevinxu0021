@@ -1,9 +1,11 @@
 package default_package;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 public class ObjectManager {
 	Character character;
+	ArrayList<Obstacles> obstacles = new ArrayList<Obstacles>();
 	// Obstacles obstacle;
 
 	ObjectManager(Character character) {
@@ -13,6 +15,9 @@ public class ObjectManager {
 
 	void update() {
 		character.update();
+		for (int i = 0; i < obstacles.size(); i++) {
+			obstacles.get(i).update();
+		}
 	}
 
 	void draw(Graphics g) {

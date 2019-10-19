@@ -128,42 +128,44 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 
 		// character movement
 		if (currentState == GAME_STATE) {
-			if (e.getKeyCode() == KeyEvent.VK_W) {
+			if (e.getKeyCode() == e.VK_W) {
 				System.out.println("Pressed: W");
 				character.up = true;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_S) {
+			else if (e.getKeyCode() == e.VK_S) {
 				System.out.println("Pressed: S");
 				character.down = true;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_A) {
+			else if (e.getKeyCode() == e.VK_A) {
 				System.out.println("Pressed: A");
 				character.left = true;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_D) {
+			else if (e.getKeyCode() == e.VK_D) {
 				System.out.println("Pressed: D");
 				character.right = true;
 			}
 		}
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		System.out.println(currentState);
 		// character movement
 		if (currentState == GAME_STATE) {
-			if (e.getKeyCode() == KeyEvent.VK_W) {
+			if (e.getKeyCode() == e.VK_W) {
 				System.out.println("realeased: W");
 				character.up = false;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_S) {
+			else if (e.getKeyCode() == e.VK_S) {
 				System.out.println("realeased: S");
 				character.down = false;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_A) {
+			else if (e.getKeyCode() == e.VK_A) {
 				System.out.println("realeased: A");
 				character.left = false;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_D) {
+			else if (e.getKeyCode() == e.VK_D) {
 				System.out.println("realeased: D");
 				character.right = false;
 			}

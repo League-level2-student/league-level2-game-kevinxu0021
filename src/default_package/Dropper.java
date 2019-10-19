@@ -24,7 +24,6 @@ public class Dropper {
 	void setup() {
 		frame.addKeyListener(panel);
 		frame.addMouseListener(panel);
-		// frame.addKeyListener(gamePanel);
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
