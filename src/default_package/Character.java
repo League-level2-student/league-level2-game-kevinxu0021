@@ -43,4 +43,28 @@ public class Character extends GameObject {
 	void draw(Graphics g) {
 		g.fillRect(x, y, width, height);
 	}
+
+	int getX() {
+		return x;
+	}
+
+	void setX(int x) {
+		this.x = x;
+	}
+
+	int getY() {
+		return y;
+	}
+
+	void setY(int y) {
+		this.y = y;
+	}
+
+	int getSpeed() {
+		return speed;
+	}
+
+	void setSpeed(int speed) {
+		this.speed = speed;
+	}
 }
