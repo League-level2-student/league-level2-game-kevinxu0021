@@ -27,26 +27,30 @@ public class ObjectManager {
 			obstacles.get(i).draw(g);
 		}
 	}
+
 	void addObstacles(Obstacles o) {
 		obstacles.add(o);
 	}
+
 	void manageObstacles() {
-		if(System.currentTimeMillis() - obstacleTimer >=obstacleSpawnTime) {
+		if (System.currentTimeMillis() - obstacleTimer >= obstacleSpawnTime) {
 			addObstacles(new Obstacles(new Random().nextInt(Dropper.width), 0, 50, 50));
-			
+
 			obstacleTimer = System.currentTimeMillis();
 		}
 	}
+
 	void purgeObjects() {
-		for(int i = 0; i < obstacles.size(); i++) {
-			if(obstacles.get(i).isAlive == false) {
+		for (int i = 0; i < obstacles.size(); i++) {
+			if (obstacles.get(i).isAlive == false) {
 				obstacles.remove(i);
 			}
 		}
 	}
+
 	void checkCollision() {
-		for(Obstacles o : obstacles) {
-			if(character.collisionBox.intersects(o.collisionBox)) {
+		for (Obstacles o : obstacles) {
+			if (character.collisionBox.intersects(o.collisionBox)) {
 				character.isAlive = false;
 			}
 		}

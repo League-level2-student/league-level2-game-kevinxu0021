@@ -14,7 +14,7 @@ public class Obstacles extends GameObject {
 	void update() {
 		super.update();
 		Random random = new Random();
-		x += random.nextInt(21)-10;
+		x += random.nextInt(21) - 10;
 		y++;
 	}
 
