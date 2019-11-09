@@ -34,7 +34,7 @@ public class ObjectManager {
 
 	void manageObstacles() {
 		if (System.currentTimeMillis() - obstacleTimer >= obstacleSpawnTime) {
-			addObstacles(new Obstacles(new Random().nextInt(Dropper.width), 0, 50, 50));
+			addObstacles(new Obstacles(new Random().nextInt(Game.width), 0, 50, 50));
 
 			obstacleTimer = System.currentTimeMillis();
 		}

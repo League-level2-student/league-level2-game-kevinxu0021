@@ -4,21 +4,21 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-public class Dropper {
+public class Game {
 	final static int width = 500;
 	final static int height = 900;
 	JFrame frame;
 	Panel panel;
 
-	Dropper() {
+	Game() {
 		frame = new JFrame();
 		panel = new Panel();
 
 	}
 
 	public static void main(String[] args) {
-		Dropper dropper = new Dropper();
-		dropper.setup();
+		Game game = new Game();
+		game.setup();
 	}
 
 	void setup() {

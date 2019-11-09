@@ -41,7 +41,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	ObjectManager objectManager = new ObjectManager(character);
 
 	Panel() {
-		timer = new Timer(1000 / 60, this);
+		timer = new Timer(1000 / 200, this);
 
 		font = new Font("Arial", Font.BOLD, 36);
 		Title = new Font("Times New Roman", Font.BOLD, 65);
@@ -68,7 +68,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 
 	void drawMenuScreen(Graphics g) {
 		g.setColor(Color.YELLOW);
-		g.fillRect(0, 0, Dropper.width, Dropper.height);
+		g.fillRect(0, 0, Game.width, Game.height);
 		g.setColor(Color.BLACK);
 		g.setFont(Title);
 		g.drawString("Welcome", 110, 200);
@@ -84,7 +84,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 
 	void drawEndScreen(Graphics g) {
 		g.setColor(Color.RED);
-		g.fillRect(0, 0, Dropper.width, Dropper.height);
+		g.fillRect(0, 0, Game.width, Game.height);
 	}
 
 	public void paintComponent(Graphics g) {
