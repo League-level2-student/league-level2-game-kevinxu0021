@@ -41,7 +41,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	ObjectManager objectManager = new ObjectManager(character);
 
 	Panel() {
-		timer = new Timer(1000 / 200, this);
+		timer = new Timer(1000 / 1600, this);
 
 		font = new Font("Arial", Font.BOLD, 36);
 		Title = new Font("Times New Roman", Font.BOLD, 65);
