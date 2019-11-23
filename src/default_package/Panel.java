@@ -111,30 +111,6 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	@Override
 	public void keyPressed(KeyEvent e) {
 		System.out.println("Press Detected");
-		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			if (currentState == GAME_STATE) {
-				currentState = PAUSE_STATE;
-			} else if (currentState == PAUSE_STATE) {
-				currentState = GAME_STATE;
-			}
-
-		}
-		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			if (currentState <= 2) {
-				currentState++;
-			}
-			if (currentState == 3) {
-				currentState = MENU_STATE;
-			}
-		}
-		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			if (currentState == MENU_STATE) {
-				JOptionPane.showMessageDialog(null,
-						"Use whatever key you programmed to move left and right, and avoid the blockings. ",
-						"Instructions", 0, null);
-			}
-		}
-
 		// character movement
 		if (currentState == GAME_STATE) {
 			if (e.getKeyCode() == KeyEvent.VK_W) {
@@ -151,11 +127,39 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 				character.right = true;
 			}
 		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			if (currentState == GAME_STATE) {
+				currentState = PAUSE_STATE;
+			} else if (currentState == PAUSE_STATE) {
+				currentState = GAME_STATE;
+			}
+			
+
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (currentState <= 2) {
+				currentState++;
+			}
+			if (currentState == 3) {
+				currentState = MENU_STATE;
+			}
+		}
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			if (currentState == MENU_STATE) {
+				JOptionPane.showMessageDialog(null,
+						"Use whatever key you programmed to move left and right, and avoid the blockings. ",
+						"Instructions", 0, null);
+			}
+		}
+		
 
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		System.out.println("Key Released");
 		// System.out.println(currentState);
 		// character movement
 		if (currentState == GAME_STATE) {
