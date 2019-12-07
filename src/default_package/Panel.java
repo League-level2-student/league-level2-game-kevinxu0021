@@ -37,11 +37,11 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	KeybindPanel keybindPanel = new KeybindPanel();
 
 	Character character = new Character(100, 100, 100, 100);
-	// Obstacles Obstacle = new Obstacles(100, 100, 100, 100);
+	Obstacles Obstacle = new Obstacles(100, 100, 100, 100);
 	ObjectManager objectManager = new ObjectManager(character);
 
 	Panel() {
-		timer = new Timer(1000 / 1600, this);
+		timer = new Timer(1000 / 5000, this);
 
 		font = new Font("Arial", Font.BOLD, 36);
 		Title = new Font("Times New Roman", Font.BOLD, 65);

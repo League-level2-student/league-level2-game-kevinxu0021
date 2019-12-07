@@ -11,7 +11,7 @@ public class Character extends GameObject {
 
 	Character(int x, int y, int width, int height) {
 		super(x, y, width, height);
-		speed = 5;
+		speed = 1;
 	}
 
 	void update() {
