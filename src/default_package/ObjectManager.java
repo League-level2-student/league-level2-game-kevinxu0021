@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class ObjectManager {
 	Character character;
-	ArrayList<Obstacles> obstacles = new ArrayList<Obstacles>();
+	ArrayList<Obstacles> obstacle = new ArrayList<Obstacles>();
 	long obstacleTimer = 0;
 	int obstacleSpawnTime = 1000;
 
@@ -16,20 +16,20 @@ public class ObjectManager {
 
 	void update() {
 		character.update();
-		for (int i = 0; i < obstacles.size(); i++) {
-			obstacles.get(i).update();
+		for (int i = 0; i < obstacle.size(); i++) {
+			obstacle.get(i).update();
 		}
 	}
 
 	void draw(Graphics g) {
 		character.draw(g);
-		for (int i = 0; i < obstacles.size(); i++) {
-			obstacles.get(i).draw(g);
+		for (int i = 0; i < obstacle.size(); i++) {
+			obstacle.get(i).draw(g);
 		}
 	}
 
 	void addObstacles(Obstacles o) {
-		obstacles.add(o);
+		obstacle.add(o);
 	}
 
 	void manageObstacles() {
@@ -41,15 +41,15 @@ public class ObjectManager {
 	}
 
 	void purgeObjects() {
-		for (int i = 0; i < obstacles.size(); i++) {
-			if (obstacles.get(i).isAlive == false) {
-				obstacles.remove(i);
+		for (int i = 0; i < obstacle.size(); i++) {
+			if (obstacle.get(i).isAlive == false) {
+				obstacle.remove(i);
 			}
 		}
 	}
 
 	void checkCollision() {
-		for (Obstacles o : obstacles) {
+		for (Obstacles o : obstacle) {
 			if (character.collisionBox.intersects(o.collisionBox)) {
 				character.isAlive = false;
 			}

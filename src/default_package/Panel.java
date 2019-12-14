@@ -37,7 +37,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	KeybindPanel keybindPanel = new KeybindPanel();
 
 	Character character = new Character(100, 100, 100, 100);
-	Obstacles Obstacle = new Obstacles(100, 100, 100, 100);
+	Obstacles Obstacle = new Obstacles(100, 900, 100, 100);
 	ObjectManager objectManager = new ObjectManager(character);
 
 	Panel() {
@@ -55,6 +55,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 
 	void updateGameState() {
 		objectManager.update();
+		objectManager.manageObstacles();
 	}
 
 	void drawPauseScreen(Graphics g) {
