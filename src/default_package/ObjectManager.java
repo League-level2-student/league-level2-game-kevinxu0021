@@ -8,7 +8,8 @@ public class ObjectManager {
 	Character character;
 	ArrayList<Obstacles> obstacle = new ArrayList<Obstacles>();
 	long obstacleTimer = 0;
-	int obstacleSpawnTime = 1000;
+	int obstacleSpawnTime = 500;
+	int score = 0;
 
 	ObjectManager(Character character) {
 		this.character = character;
@@ -43,6 +44,7 @@ public class ObjectManager {
 	void purgeObjects() {
 		for (int i = 0; i < obstacle.size(); i++) {
 			if (obstacle.get(i).isAlive == false) {
+				score++;
 				obstacle.remove(i);
 			}
 		}

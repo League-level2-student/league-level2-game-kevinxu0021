@@ -36,7 +36,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	Keybind keybind = new Keybind();
 	KeybindPanel keybindPanel = new KeybindPanel();
 
-	Character character = new Character(100, 100, 100, 100);
+	Character character = new Character(225, -300, 50, 50);
 	Obstacles Obstacle = new Obstacles(100, 900, 100, 100);
 	ObjectManager objectManager = new ObjectManager(character);
 
@@ -56,6 +56,11 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	void updateGameState() {
 		objectManager.update();
 		objectManager.manageObstacles();
+		objectManager.checkCollision();
+		objectManager.purgeObjects();
+		if (character.isAlive == false) {
+			currentState = END_STATE;
+		}
 	}
 
 	void drawPauseScreen(Graphics g) {
@@ -86,6 +91,10 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	void drawEndScreen(Graphics g) {
 		g.setColor(Color.RED);
 		g.fillRect(0, 0, Game.width, Game.height);
+		g.setFont(Title);
+		g.setColor(Color.WHITE);
+		g.drawString("Game Over", 90, 200);
+		System.out.println(objectManager.score);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -100,6 +109,9 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 		}
 		if (currentState == GAME_STATE) {
 			drawGameScreen(g);
+		}
+		if (currentState == END_STATE) {
+			drawEndScreen(g);
 		}
 	}
 
@@ -128,17 +140,16 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 				character.right = true;
 			}
 		}
-		
+
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			if (currentState == GAME_STATE) {
 				currentState = PAUSE_STATE;
 			} else if (currentState == PAUSE_STATE) {
 				currentState = GAME_STATE;
 			}
-			
 
 		}
-		
+
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState <= 2) {
 				currentState++;
@@ -154,7 +165,6 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 						"Instructions", 0, null);
 			}
 		}
-		
 
 	}
 
