@@ -7,6 +7,7 @@ import java.util.Random;
 public class ObjectManager {
 	Character character;
 	ArrayList<Obstacles> obstacle = new ArrayList<Obstacles>();
+	ScoreChecker scoreChecker = new ScoreChecker(0, -900, Game.width, 10);
 	long obstacleTimer = 0;
 	int obstacleSpawnTime = 500;
 	int score = 0;
@@ -20,6 +21,7 @@ public class ObjectManager {
 		for (int i = 0; i < obstacle.size(); i++) {
 			obstacle.get(i).update();
 		}
+		scoreChecker.update();
 	}
 
 	void draw(Graphics g) {
@@ -27,6 +29,7 @@ public class ObjectManager {
 		for (int i = 0; i < obstacle.size(); i++) {
 			obstacle.get(i).draw(g);
 		}
+		scoreChecker.draw(g);
 	}
 
 	void addObstacles(Obstacles o) {
@@ -44,7 +47,6 @@ public class ObjectManager {
 	void purgeObjects() {
 		for (int i = 0; i < obstacle.size(); i++) {
 			if (obstacle.get(i).isAlive == false) {
-				score++;
 				obstacle.remove(i);
 			}
 		}
@@ -54,6 +56,13 @@ public class ObjectManager {
 		for (Obstacles o : obstacle) {
 			if (character.collisionBox.intersects(o.collisionBox)) {
 				character.isAlive = false;
+			}
+		}
+		for (Obstacles o : obstacle) {
+			if (o.collisionBox.intersects(scoreChecker.collisionBox)) {
+				o.isAlive = false;
+				score++;
+
 			}
 		}
 	}

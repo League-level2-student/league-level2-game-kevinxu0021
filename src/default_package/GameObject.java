@@ -14,10 +14,10 @@ public class GameObject {
 
 	public GameObject(int x, int y, int width, int height) {
 		this.x = x;
-		this.y = y+900;
+		this.y = y + 900;
 		this.width = width;
 		this.height = height;
-		this.collisionBox = new Rectangle(x, y, width, height);
+		this.collisionBox = new Rectangle(x, y + 900, width, height);
 	}
 
 	void update() {

@@ -125,17 +125,34 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	public void keyPressed(KeyEvent e) {
 		System.out.println("Press Detected");
 		// character movement
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (currentState <= 2) {
+				currentState++;
+			}
+			if (currentState == 3) {
+				character = new Character(225, -300, 50, 50);
+				objectManager = new ObjectManager(character);
+				currentState = MENU_STATE;
+			}
+		}
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			if (currentState == MENU_STATE) {
+				JOptionPane.showMessageDialog(null,
+						"Use whatever key you programmed to move left and right, and avoid the blockings. ",
+						"Instructions", 0, null);
+			}
+		}
 		if (currentState == GAME_STATE) {
-			if (e.getKeyCode() == KeyEvent.VK_W) {
+			if (e.getKeyCode() == KeyEvent.VK_UP) {
 				System.out.println("Pressed: W");
 				character.up = true;
-			} else if (e.getKeyCode() == KeyEvent.VK_S) {
+			} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 				System.out.println("Pressed: S");
 				character.down = true;
-			} else if (e.getKeyCode() == KeyEvent.VK_A) {
+			} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 				System.out.println("Pressed: A");
 				character.left = true;
-			} else if (e.getKeyCode() == KeyEvent.VK_D) {
+			} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 				System.out.println("Pressed: D");
 				character.right = true;
 			}
@@ -150,22 +167,6 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 
 		}
 
-		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			if (currentState <= 2) {
-				currentState++;
-			}
-			if (currentState == 3) {
-				currentState = MENU_STATE;
-			}
-		}
-		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			if (currentState == MENU_STATE) {
-				JOptionPane.showMessageDialog(null,
-						"Use whatever key you programmed to move left and right, and avoid the blockings. ",
-						"Instructions", 0, null);
-			}
-		}
-
 	}
 
 	@Override
@@ -174,16 +175,16 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 		// System.out.println(currentState);
 		// character movement
 		if (currentState == GAME_STATE) {
-			if (e.getKeyCode() == KeyEvent.VK_W) {
+			if (e.getKeyCode() == KeyEvent.VK_UP) {
 				System.out.println("released: W");
 				character.up = false;
-			} else if (e.getKeyCode() == KeyEvent.VK_S) {
+			} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 				System.out.println("released: S");
 				character.down = false;
-			} else if (e.getKeyCode() == KeyEvent.VK_A) {
+			} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 				System.out.println("released: A");
 				character.left = false;
-			} else if (e.getKeyCode() == KeyEvent.VK_D) {
+			} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 				System.out.println("released: D");
 				character.right = false;
 			}
