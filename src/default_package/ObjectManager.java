@@ -7,7 +7,7 @@ import java.util.Random;
 public class ObjectManager {
 	Character character;
 	ArrayList<Obstacles> obstacle = new ArrayList<Obstacles>();
-	ScoreChecker scoreChecker = new ScoreChecker(0, -900, Game.width, 10);
+	ScoreChecker scoreChecker = new ScoreChecker(0, -910, Game.width, 10);
 	long obstacleTimer = 0;
 	int obstacleSpawnTime = 500;
 	int score = 0;

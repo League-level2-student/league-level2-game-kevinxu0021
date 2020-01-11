@@ -7,23 +7,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import keybinds.Keybind;
-import keybinds.KeybindPanel;
-
-public class Panel extends JPanel implements KeyListener, ActionListener, MouseListener {
+public class Panel extends JPanel implements KeyListener, ActionListener {
 
 	final int MENU_STATE = 0;
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
 	final int PAUSE_STATE = 3;
+	final int INSTRUCTIONS = 4;
 	int currentState = MENU_STATE;
 
 	Timer timer;
@@ -32,20 +26,19 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 	Font font2;
 	Font Title;
 	Font Subtitle;
+	Font instructions;
 
-	Keybind keybind = new Keybind();
-	KeybindPanel keybindPanel = new KeybindPanel();
-
-	Character character = new Character(225, -300, 50, 50);
+	Character character = new Character(225, -750, 50, 50);
 	Obstacles Obstacle = new Obstacles(100, 900, 100, 100);
 	ObjectManager objectManager = new ObjectManager(character);
 
 	Panel() {
-		timer = new Timer(1000 / 5000, this);
+		timer = new Timer(1000 / 1000, this);
 
 		font = new Font("Arial", Font.BOLD, 36);
 		Title = new Font("Times New Roman", Font.BOLD, 65);
 		Subtitle = new Font("Times New Roman", Font.PLAIN, 24);
+		instructions = new Font("Times New Roman", Font.PLAIN, 18);
 
 	}
 
@@ -93,15 +86,26 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 		g.fillRect(0, 0, Game.width, Game.height);
 		g.setFont(Title);
 		g.setColor(Color.WHITE);
-		g.drawString("Game Over", 90, 200);
-		System.out.println(objectManager.score);
+		g.drawString("You Died", 100, 200);
+		g.setFont(Subtitle);
+		g.drawString("Score: " + objectManager.score, 200, 650);
+	}
+
+	void drawInstructionScreen(Graphics g) {
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, Game.width, Game.height);
+		g.setColor(Color.BLACK);
+		g.setFont(instructions);
+		g.drawString("Use the arrow keys to move around", 120, 100);
+		g.drawString("Your goal is to not hit the floating objects while falling down", 30, 300);
+		g.drawString("If you hit the floating objects, you die", 110, 500);
+		g.drawString("Good Luck", 195, 700);
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if (currentState == PAUSE_STATE) {
 			drawPauseScreen(g);
-			rectangles(g);
 
 		}
 		if (currentState == MENU_STATE) {
@@ -113,47 +117,44 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 		if (currentState == END_STATE) {
 			drawEndScreen(g);
 		}
+		if (currentState == INSTRUCTIONS) {
+			drawInstructionScreen(g);
+		}
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-//System.out.println("Key Typed");
+
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println("Press Detected");
-		// character movement
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState <= 2) {
 				currentState++;
 			}
 			if (currentState == 3) {
-				character = new Character(225, -300, 50, 50);
+				character = new Character(225, -750, 50, 50);
 				objectManager = new ObjectManager(character);
 				currentState = MENU_STATE;
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			if (currentState == MENU_STATE) {
-				JOptionPane.showMessageDialog(null,
-						"Use whatever key you programmed to move left and right, and avoid the blockings. ",
-						"Instructions", 0, null);
+				currentState = INSTRUCTIONS;
+			} else if (currentState == INSTRUCTIONS) {
+				currentState = MENU_STATE;
 			}
 		}
 		if (currentState == GAME_STATE) {
 			if (e.getKeyCode() == KeyEvent.VK_UP) {
-				System.out.println("Pressed: W");
 				character.up = true;
 			} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-				System.out.println("Pressed: S");
 				character.down = true;
 			} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				System.out.println("Pressed: A");
 				character.left = true;
 			} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				System.out.println("Pressed: D");
 				character.right = true;
 			}
 		}
@@ -171,21 +172,14 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		System.out.println("Key Released");
-		// System.out.println(currentState);
-		// character movement
 		if (currentState == GAME_STATE) {
 			if (e.getKeyCode() == KeyEvent.VK_UP) {
-				System.out.println("released: W");
 				character.up = false;
 			} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-				System.out.println("released: S");
 				character.down = false;
 			} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				System.out.println("released: A");
 				character.left = false;
 			} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				System.out.println("released: D");
 				character.right = false;
 			}
 		}
@@ -197,53 +191,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener, MouseL
 		repaint();
 		if (currentState == GAME_STATE) {
 			updateGameState();
-			// System.out.println("called");
 		}
-	}
-
-	void rectangles(Graphics g) {
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, 75, 25);
-		g.setColor(Color.black);
-		g.drawRect(0, 0, 75, 25);
-		font2 = new Font("Arial", Font.PLAIN, 14);
-		g.setFont(font2);
-		g.drawString("Keybinds", 10, 17);
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-		if (e.getButton() == MouseEvent.BUTTON1 && currentState == PAUSE_STATE) {
-			if (e.getPoint().x < 100 && e.getPoint().y < 50) {
-				keybind.setup();
-			}
-		}
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

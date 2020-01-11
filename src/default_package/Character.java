@@ -22,7 +22,7 @@ public class Character extends GameObject {
 			y -= speed;
 
 		}
-		if (down == true && y < 800) {
+		if (down == true && y < 850) {
 
 			y += speed;
 
@@ -32,7 +32,7 @@ public class Character extends GameObject {
 			x -= speed;
 
 		}
-		if (right == true && x < 400) {
+		if (right == true && x < 450) {
 
 			x += speed;
 
