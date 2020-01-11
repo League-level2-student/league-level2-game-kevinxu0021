@@ -1,13 +1,17 @@
 package default_package;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -32,6 +36,8 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 	Obstacles Obstacle = new Obstacles(100, 900, 100, 100);
 	ObjectManager objectManager = new ObjectManager(character);
 
+	public static BufferedImage spaceImg;
+
 	Panel() {
 		timer = new Timer(1000 / 1000, this);
 
@@ -40,6 +46,11 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 		Subtitle = new Font("Times New Roman", Font.PLAIN, 24);
 		instructions = new Font("Times New Roman", Font.PLAIN, 18);
 
+		try {
+			spaceImg = ImageIO.read(this.getClass().getResourceAsStream("space.jpeg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	void startGame() {
@@ -78,6 +89,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 	}
 
 	void drawGameScreen(Graphics g) {
+		g.drawImage(spaceImg, 0, 0, Game.width, Game.height, null);
 		objectManager.draw(g);
 	}
 
@@ -106,7 +118,6 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 		super.paintComponent(g);
 		if (currentState == PAUSE_STATE) {
 			drawPauseScreen(g);
-
 		}
 		if (currentState == MENU_STATE) {
 			drawMenuScreen(g);
