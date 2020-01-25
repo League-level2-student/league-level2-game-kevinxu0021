@@ -37,6 +37,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 	ObjectManager objectManager = new ObjectManager(character);
 
 	public static BufferedImage spaceImg;
+	public static BufferedImage characterImg;
 
 	Panel() {
 		timer = new Timer(1000 / 1000, this);
@@ -48,6 +49,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 
 		try {
 			spaceImg = ImageIO.read(this.getClass().getResourceAsStream("space.jpeg"));
+			characterImg = ImageIO.read(this.getClass().getResourceAsStream("character.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
