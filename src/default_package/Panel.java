@@ -32,7 +32,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 	Font Subtitle;
 	Font instructions;
 
-	Character character = new Character(225, -750, 50, 50);
+	Character character = new Character(225, -750, 75, 75);
 	Obstacles Obstacle = new Obstacles(100, 900, 100, 100);
 	ObjectManager objectManager = new ObjectManager(character);
 
@@ -148,7 +148,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 				currentState++;
 			}
 			if (currentState == 3) {
-				character = new Character(225, -750, 50, 50);
+				character = new Character(225, -750, 75, 75);
 				objectManager = new ObjectManager(character);
 				currentState = MENU_STATE;
 			}

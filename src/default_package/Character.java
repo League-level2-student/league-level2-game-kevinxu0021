@@ -41,7 +41,7 @@ public class Character extends GameObject {
 	}
 
 	void draw(Graphics g) {
-		g.fillRect(x, y, width, height);
+		g.drawImage(Panel.characterImg, x, y, width, height, null);
 	}
 
 	int getX() {
