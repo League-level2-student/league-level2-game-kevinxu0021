@@ -1,8 +1,6 @@
 package default_package;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Random;
 
 public class Obstacles extends GameObject {
 
@@ -18,8 +16,7 @@ public class Obstacles extends GameObject {
 	}
 
 	void draw(Graphics g) {
-		g.setColor(Color.GRAY);
-		g.fillRect(x, y, width, height);
+		g.drawImage(Panel.trashImg, x, y, width, height, null);
 	}
 
 }
