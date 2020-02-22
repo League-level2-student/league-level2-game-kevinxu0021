@@ -18,12 +18,11 @@ int number;
 	}
 
 	void draw(Graphics g) {
-		 random = new Random();
-		 random.nextInt(2);
-		 
-		if(number == 1) {
 		g.drawImage(Panel.trashImg, x, y, width, height, null);
-		}
+		
+	}
+	void draw1(Graphics g) {
+		g.drawImage(Panel.trashImg1, x, y, width, height, null);
 	}
 
 }

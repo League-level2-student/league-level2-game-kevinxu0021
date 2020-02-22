@@ -42,7 +42,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 	public static BufferedImage trashImg1;
 
 	Panel() {
-		timer = new Timer(1000 / 1000, this);
+		timer = new Timer(1000 / 240, this);
 
 		font = new Font("Arial", Font.BOLD, 36);
 		Title = new Font("Times New Roman", Font.BOLD, 65);

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ObjectManager {
+	Random random;
+	int number;
 	Character character;
 	ArrayList<Obstacles> obstacle = new ArrayList<Obstacles>();
 	ScoreChecker scoreChecker = new ScoreChecker(0, -910, Game.width, 10);
@@ -25,10 +27,18 @@ public class ObjectManager {
 	}
 
 	void draw(Graphics g) {
+		random = new Random();
+		number = random.nextInt(2);
 		character.draw(g);
 		for (int i = 0; i < obstacle.size(); i++) {
-			obstacle.get(i).draw(g);
+			if (number == 0) {
+				obstacle.get(i).draw(g);
+			}
+			if (number == 1) {
+				obstacle.get(i).draw1(g);
+			}
 		}
+
 		scoreChecker.draw(g);
 	}
 
