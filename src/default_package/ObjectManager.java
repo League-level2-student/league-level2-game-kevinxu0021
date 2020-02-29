@@ -9,6 +9,7 @@ public class ObjectManager {
 	int number;
 	Character character;
 	ArrayList<Obstacles> obstacle = new ArrayList<Obstacles>();
+	ArrayList<Obstacles> obstacle1 = new ArrayList<Obstacles>();
 	ScoreChecker scoreChecker = new ScoreChecker(0, -910, Game.width, 10);
 	long obstacleTimer = 0;
 	int obstacleSpawnTime = 500;
@@ -23,6 +24,9 @@ public class ObjectManager {
 		for (int i = 0; i < obstacle.size(); i++) {
 			obstacle.get(i).update();
 		}
+		for (int i = 0; i < obstacle.size(); i++) {
+			obstacle1.get(i).update();
+		}
 		scoreChecker.update();
 	}
 
@@ -31,12 +35,10 @@ public class ObjectManager {
 		number = random.nextInt(2);
 		character.draw(g);
 		for (int i = 0; i < obstacle.size(); i++) {
-			if (number == 0) {
-				obstacle.get(i).draw(g);
-			}
-			if (number == 1) {
-				obstacle.get(i).draw1(g);
-			}
+			obstacle.get(i).draw(g);
+		}
+		for (int i = 0; i < obstacle.size(); i++) {
+			obstacle1.get(i).draw(g);
 		}
 
 		scoreChecker.draw(g);
@@ -46,10 +48,14 @@ public class ObjectManager {
 		obstacle.add(o);
 	}
 
+	void addObstacles1(Obstacles o1) {
+		obstacle1.add(o1);
+	}
+
 	void manageObstacles() {
 		if (System.currentTimeMillis() - obstacleTimer >= obstacleSpawnTime) {
 			addObstacles(new Obstacles(new Random().nextInt(Game.width), 0, 50, 50));
-
+			addObstacles1(new Obstacles(new Random().nextInt(Game.width), 0, 50, 50));
 			obstacleTimer = System.currentTimeMillis();
 		}
 	}
@@ -58,6 +64,9 @@ public class ObjectManager {
 		for (int i = 0; i < obstacle.size(); i++) {
 			if (obstacle.get(i).isAlive == false) {
 				obstacle.remove(i);
+			}
+			if (obstacle1.get(i).isAlive == false) {
+				obstacle1.remove(i);
 			}
 		}
 	}
@@ -73,6 +82,17 @@ public class ObjectManager {
 				o.isAlive = false;
 				score++;
 
+			}
+		}
+		for (Obstacles o1 : obstacle1) {
+			if(character.collisionBox.intersects(o1.collisionBox)) {
+				character.isAlive = false;
+			}
+		}
+		for (Obstacles o1: obstacle1) {
+			if(o1.collisionBox.intersects(scoreChecker.collisionBox)) {
+				o1.isAlive = false;
+				score++;
 			}
 		}
 	}

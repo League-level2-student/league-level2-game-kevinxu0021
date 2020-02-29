@@ -34,6 +34,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 
 	Character character = new Character(225, -750, 75, 75);
 	Obstacles Obstacle = new Obstacles(100, 900, 100, 100);
+	Obstacles obstacle1 = new Obstacles(100, 900, 100, 100);
 	ObjectManager objectManager = new ObjectManager(character);
 
 	public static BufferedImage spaceImg;
