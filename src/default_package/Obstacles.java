@@ -18,6 +18,9 @@ public class Obstacles extends GameObject {
 
 	void draw(Graphics g) {
 		g.drawImage(Panel.trashImg, x, y, width, height, null);
-		
+
+	}
+	void draw1(Graphics g) {
+		g.drawImage(Panel.trashImg1, x, y, width, height, null);
 	}
 }
