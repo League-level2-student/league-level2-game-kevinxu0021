@@ -39,8 +39,6 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 
 	public static BufferedImage spaceImg;
 	public static BufferedImage characterImg;
-	public static BufferedImage trashImg;
-	public static BufferedImage trashImg1;
 
 	Panel() {
 		timer = new Timer(1000 / 240, this);
@@ -53,8 +51,6 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 		try {
 			spaceImg = ImageIO.read(this.getClass().getResourceAsStream("space.jpeg"));
 			characterImg = ImageIO.read(this.getClass().getResourceAsStream("character.png"));
-			trashImg = ImageIO.read(this.getClass().getResourceAsStream("trash.png"));
-			trashImg1 = ImageIO.read(this.getClass().getResourceAsStream("1.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -85,7 +81,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 
 	void drawMenuScreen(Graphics g) {
 		g.setColor(Color.YELLOW);
-		g.fillRect(0, 0, Game.width, Game.height);
+		g.fillRect(0, 0, DontDie.width, DontDie.height);
 		g.setColor(Color.BLACK);
 		g.setFont(Title);
 		g.drawString("Welcome", 110, 200);
@@ -96,13 +92,13 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 	}
 
 	void drawGameScreen(Graphics g) {
-		g.drawImage(spaceImg, 0, 0, Game.width, Game.height, null);
+		g.drawImage(spaceImg, 0, 0, DontDie.width, DontDie.height, null);
 		objectManager.draw(g);
 	}
 
 	void drawEndScreen(Graphics g) {
 		g.setColor(Color.RED);
-		g.fillRect(0, 0, Game.width, Game.height);
+		g.fillRect(0, 0, DontDie.width, DontDie.height);
 		g.setFont(Title);
 		g.setColor(Color.WHITE);
 		g.drawString("You Died", 100, 200);
@@ -112,7 +108,7 @@ public class Panel extends JPanel implements KeyListener, ActionListener {
 
 	void drawInstructionScreen(Graphics g) {
 		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, Game.width, Game.height);
+		g.fillRect(0, 0, DontDie.width, DontDie.height);
 		g.setColor(Color.BLACK);
 		g.setFont(instructions);
 		g.drawString("Use the arrow keys to move around", 120, 100);

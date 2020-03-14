@@ -9,10 +9,12 @@ public class ObjectManager {
 	int number;
 	Character character;
 	ArrayList<Obstacles> obstacle = new ArrayList<Obstacles>();
-	//ArrayList<Obstacles> obstacle1 = new ArrayList<Obstacles>();
-	ScoreChecker scoreChecker = new ScoreChecker(0, -910, Game.width, 10);
+	ArrayList<Obstacles1> obstacle1 = new ArrayList<Obstacles1>();
+	ScoreChecker scoreChecker = new ScoreChecker(0, -910, DontDie.width, 10);
 	long obstacleTimer = 0;
-	int obstacleSpawnTime = 2000;
+	long obstacleTimer1 = 0;
+	int obstacleSpawnTime = 1565;
+	int obstacleSpawnTime1 = 1234;
 	int score = 0;
 
 	ObjectManager(Character character) {
@@ -24,26 +26,20 @@ public class ObjectManager {
 		for (int i = 0; i < obstacle.size(); i++) {
 			obstacle.get(i).update();
 		}
-		//for (int i = 0; i < obstacle1.size(); i++) {
-		//	obstacle1.get(i).update();
-		//}
+		for (int i = 0; i < obstacle1.size(); i++) {
+			obstacle1.get(i).update();
+		}
 		scoreChecker.update();
 	}
 
 	void draw(Graphics g) {
-		random = new Random();
-		
 		character.draw(g);
 		for (int i = 0; i < obstacle.size(); i++) {
-			number = random.nextInt(2);
-			if(number == 0) {
-			obstacle.get(i).draw(g);
+				obstacle.get(i).draw(g);
 			}
-			else if(number == 1) {
-				obstacle.get(i).draw1(g);
-			}
+		for (int i = 0; i < obstacle1.size(); i++) {
+			obstacle1.get(i).draw(g);
 		}
-
 
 		scoreChecker.draw(g);
 	}
@@ -52,15 +48,19 @@ public class ObjectManager {
 		obstacle.add(o);
 	}
 
-	//void addObstacles1(Obstacles o1) {
-	//	obstacle1.add(o1);
-	//}
+	void addObstacles1(Obstacles1 o1) {
+		obstacle1.add(o1);
+	}
 
 	void manageObstacles() {
 		if (System.currentTimeMillis() - obstacleTimer >= obstacleSpawnTime) {
-			addObstacles(new Obstacles(new Random().nextInt(Game.width), 0, 50, 50));
-		//	addObstacles1(new Obstacles(new Random().nextInt(Game.width), 0, 50, 50));
+			addObstacles(new Obstacles(new Random().nextInt(DontDie.width), 0, 50, 50));
+
 			obstacleTimer = System.currentTimeMillis();
+		}
+		if (System.currentTimeMillis() - obstacleTimer1 >= obstacleSpawnTime1) {
+			addObstacles1(new Obstacles1(new Random().nextInt(DontDie.width), 0, 50, 50));
+			obstacleTimer1 = System.currentTimeMillis();
 		}
 	}
 
@@ -70,11 +70,11 @@ public class ObjectManager {
 				obstacle.remove(i);
 			}
 		}
-		//for (int i = 0; i < obstacle1.size(); i++) {
-		//	if (obstacle1.get(i).isAlive == false) {
-		//		obstacle1.remove(i);
-		//	}
-		//}
+		for (int i = 0; i < obstacle1.size(); i++) {
+			if (obstacle1.get(i).isAlive == false) {
+				obstacle1.remove(i);
+			}
+		}
 	}
 
 	void checkCollision() {
@@ -90,16 +90,16 @@ public class ObjectManager {
 
 			}
 		}
-		//for (Obstacles o1 : obstacle1) {
-		//	if (character.collisionBox.intersects(o1.collisionBox)) {
-		//		character.isAlive = false;
-		//	}
-	//	}
-	//	for (Obstacles o1 : obstacle1) {
-		//	if (o1.collisionBox.intersects(scoreChecker.collisionBox)) {
-		//		o1.isAlive = false;
-		//		score++;
-		//	}
-		//}
+		for (Obstacles1 o1 : obstacle1) {
+			if (character.collisionBox.intersects(o1.collisionBox)) {
+				character.isAlive = false;
+			}
+		}
+		for (Obstacles1 o1 : obstacle1) {
+			if (o1.collisionBox.intersects(scoreChecker.collisionBox)) {
+				o1.isAlive = false;
+				score++;
+			}
+		}
 	}
 }
